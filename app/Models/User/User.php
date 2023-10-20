@@ -1,13 +1,31 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Meeting\MeetingChatMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
+/**
+ * @property int $id
+ * @property string $firstname
+ * @property string $surname
+ * @property string $patronymic
+ * @property string $birthday
+ * @property string $email
+ * @property int $profile_id
+ * @property string $created_at
+ * @property string $deleted_at
+ *
+ * @property Profile $profile
+ * @property UserAuth[] $tokens
+ * @property MeetingChatMessage[] $messages
+ *
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +60,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
 }
