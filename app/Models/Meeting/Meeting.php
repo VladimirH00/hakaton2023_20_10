@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
- * @property int $meeting_id
- * @property int $date_begin
- * @property int $duration
+ * @property string $name
+ * @property string $code
+ * @property int $ord
  *
  * @property Calendar[] $calendars
  * @property Tag[] $tags

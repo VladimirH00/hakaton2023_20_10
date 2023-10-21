@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Meeting\MeetingController;
 use App\Http\Controllers\Specialist\SpecialistController;
 use App\Http\Controllers\User\UserAuthController;
 use App\Http\Controllers\User\UserController;
@@ -31,10 +31,15 @@ Route::apiResource('/months', SpecialistController::class)->except([
     throw new HttpResponseException(response()->json('Not found', 404));
 });
 
-Route::apiResource('user', UserController::class);
+Route::apiResource('meeting', MeetingController::class)->except([
+    'create',
+    'update',
+    'destroy',
+]);
+
 Route::middleware('user.auth')->group(function () {
-
     Route::apiResource('specialist', SpecialistController::class);
-//    Route::apiResource('user', UserController::class);
-
+    Route::apiResource('user', UserController::class);
+    Route::apiResource('meeting', MeetingController::class);
 });
+
