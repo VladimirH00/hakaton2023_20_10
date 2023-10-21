@@ -48,7 +48,7 @@ class SpecialistController extends Controller
             throw new NotFoundApiException('Данный специалист не найден', 404);
         }
 
-        return response()->json($model, 201);
+        return response()->json($model);
     }
 
     /**
