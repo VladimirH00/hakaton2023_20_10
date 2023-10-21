@@ -12,5 +12,5 @@
 Либо отсканировать Qr-code:
 
 <div>
-    {!! $qrCode !!}
+    <img src="data:image/png;base64, <?= $qrCode; ?> "/>
 </div>

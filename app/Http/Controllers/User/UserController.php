@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Exceptions\DuplicateApiException;
 use App\Exceptions\NotFoundApiException;
+use App\Extensions\GoogleAuth\WrapperGoogleAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Mail\StoreUserMail;
@@ -48,8 +49,7 @@ class UserController extends Controller
             throw new DuplicateApiException('Пользователь с таким именем уже зарегистрирован', 400);
         }
 
-        $google2fa = app('pragmarx.google2fa');
-        $googleSecretKey = $google2fa->generateSecretKey();
+        $google = new WrapperGoogleAuth($request->get('email'));
 
         $profile = SprProfile::query()
             ->where('code', $request->get('profileCode'))
@@ -62,16 +62,10 @@ class UserController extends Controller
         $model->birthday = $request->get('birthday');
         $model->profile_id = $profile->id;
         $model->email = $request->get('email');
-        $model->google_secret_key = $googleSecretKey;
+        $model->google_secret_key = $google->getSecretKey();
         $model->save();
 
-        $qrCode = $google2fa->getQRCodeInline(
-            config('app.name'),
-            $model->email,
-            $googleSecretKey
-        );
-
-        Mail::to($model->email)->send(new StoreUserMail($qrCode, $googleSecretKey));
+        Mail::to($model->email)->send(new StoreUserMail($google->generateQrCode(), $google->getSecretKey()));
 
         return response()->json('inserted', 201);
     }
