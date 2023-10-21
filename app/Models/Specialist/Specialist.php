@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $name
  * @property int $description
+ * @property int $code
  *
  * @property Meeting[] $meetings
  * @property SpecialistLink[] $specialistLink
