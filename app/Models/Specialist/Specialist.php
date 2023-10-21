@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property int $description
  * @property int $code
+ * @property int $type_id
  *
  * @property Meeting[] $meetings
  * @property SpecialistLink[] $specialistLink
@@ -46,4 +47,10 @@ class Specialist extends Model
     {
         return $this->hasMany(SpecialistLink::class, 'specialist_id');
     }
+
+    public function specialist_types()
+    {
+        return $this->belongsTo(SpecialistType::class, 'type_id');
+    }
+
 }
