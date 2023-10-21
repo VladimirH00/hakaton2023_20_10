@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Meeting\MeetingChatMessage;
+use App\Models\Spr\SprProfile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,9 +20,10 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
  * @property string $email
  * @property int $profile_id
  * @property string $created_at
- * @property string $deleted_at
+ * @property string $updated_at
+ * @property string $google_secret_key
  *
- * @property Profile $profile
+ * @property SprProfile $profile
  * @property UserAuth[] $tokens
  * @property MeetingChatMessage[] $messages
  *
