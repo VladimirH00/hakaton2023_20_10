@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Meeting\MeetingController;
 use App\Http\Controllers\Specialist\SpecialistController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('specialist', SpecialistController::class);
 Route::apiResource('user', UserController::class);
+Route::apiResource('meeting', MeetingController::class);
