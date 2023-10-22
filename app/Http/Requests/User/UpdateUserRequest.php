@@ -6,6 +6,9 @@ use App\Http\Requests\AbstractBaseApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * request для валидации формы которая приходит с клиента для редактирования пользователя
+ */
 class UpdateUserRequest extends AbstractBaseApiRequest
 {
     /**

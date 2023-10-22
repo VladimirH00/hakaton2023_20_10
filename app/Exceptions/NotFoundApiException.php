@@ -2,4 +2,9 @@
 
 namespace App\Exceptions;
 
-class NotFoundApiException extends AbstractBaseException {}
+/**
+ * Исключение для обработки не существующих эндпоинтов или данныхз
+ */
+class NotFoundApiException extends AbstractBaseException
+{
+}

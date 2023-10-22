@@ -8,6 +8,9 @@ use App\Http\Requests\Specialist\StoreSpecialistRequest;
 use App\Http\Requests\Specialist\UpdateSpecialistRequest;
 use App\Models\Specialist\Specialist;
 
+/**
+ * Ресурсный контролле для CRUD операций с встречами
+ */
 class SpecialistController extends Controller
 {
     /**

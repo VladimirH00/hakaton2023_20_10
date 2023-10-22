@@ -8,6 +8,9 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
+/**
+ * Абстрактный request где определен формат возвращаемых ошибок при валидации
+ */
 abstract class AbstractBaseApiRequest extends FormRequest
 {
     /**

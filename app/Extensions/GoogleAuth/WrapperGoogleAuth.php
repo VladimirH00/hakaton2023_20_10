@@ -7,13 +7,24 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 
+/**
+ * Обертка для google аутентификации
+ *
+ */
 class WrapperGoogleAuth
 {
     private $email = null;
     private $secretKey = null;
     private $google = null;
 
-    public function __construct($email, $secretKey=null)
+    /**
+     * Конструктор куда необходимо передать email
+     * и необязательным параметром secretKey
+     *
+     * @param $email
+     * @param $secretKey
+     */
+    public function __construct($email, $secretKey = null)
     {
         $this->email = $email;
         $this->secretKey = $secretKey;
@@ -21,6 +32,8 @@ class WrapperGoogleAuth
     }
 
     /**
+     * Генерация qr-code
+     *
      * @return string
      */
     public function generateQrCode()
@@ -65,7 +78,7 @@ class WrapperGoogleAuth
      *
      * @return bool
      */
-    public function checkAuth($code, $window=8)
+    public function checkAuth($code, $window = 8)
     {
         return $this->google->verifyKey(
             $this->secretKey,

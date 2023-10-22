@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Meeting\StoreMeetingRequest;
 use App\Http\Requests\Meeting\UpdateMeetingRequest;
 use App\Models\Meeting\Meeting;
-use Illuminate\Http\Request;
-use PHPUnit\Framework\MockObject\Generator\DuplicateMethodException;
+use App\Exceptions\DuplicateApiException;
 
+/**
+ * Ресурсный контролле для CRUD операций с встречами
+ */
 class MeetingController extends Controller
 {
     /**
@@ -28,13 +30,13 @@ class MeetingController extends Controller
     public function store(StoreMeetingRequest $request)
     {
         $meeting = Meeting::query()->where('name', $request->get('name'))->first();
-        if($meeting){
-            throw new DuplicateApiExcrption('Встреча с таким названием уже существует', 400);
+        if ($meeting) {
+            throw new DuplicateApiException('Встреча с таким названием уже существует', 400);
         }
 
         $meeting = Meeting::query()->where('code', $request->get('code'))->first();
-        if($meeting){
-            throw new DuplicateApiExcrption('Встреча с таким названием уже существует', 400);
+        if ($meeting) {
+            throw new DuplicateApiException('Встреча с таким названием уже существует', 400);
         }
 
         $model = new Meeting();
@@ -51,7 +53,7 @@ class MeetingController extends Controller
      */
     public function show(string $meeting)
     {
-        /** @var Meeting $model*/
+        /** @var Meeting $model */
         $model = Meeting::query()
             ->where('code', $meeting)
             ->first();
@@ -96,11 +98,11 @@ class MeetingController extends Controller
             ->where('code', $meeting)
             ->first();
 
-        if(!$model){
+        if (!$model) {
             throw new NotFoundApiException('Данный специалист не найден', 404);
         }
 
-        $model ->delete();
+        $model->delete();
 
         return response()->json('deleted');
     }

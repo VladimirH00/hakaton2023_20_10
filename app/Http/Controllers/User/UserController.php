@@ -13,6 +13,9 @@ use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Ресурсный контроллер для выполнения CRUD операций над пользователями
+ */
 class UserController extends Controller
 {
     /**

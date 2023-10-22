@@ -5,6 +5,9 @@ namespace App\Http\Requests\Specialist;
 use App\Http\Requests\AbstractBaseApiRequest;
 use Illuminate\Support\Str as StrAlias;
 
+/**
+ * request для валидации формы которая приходит с клиента для редактирования специалистов
+ */
 class UpdateSpecialistRequest extends AbstractBaseApiRequest
 {
     /**

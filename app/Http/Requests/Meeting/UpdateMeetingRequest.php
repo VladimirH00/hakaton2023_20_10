@@ -6,7 +6,9 @@ use App\Http\Requests\AbstractBaseApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str as StrAlias;
 
-
+/**
+ * request для валидации формы которая приходит с клиента для редактирования Встречи
+ */
 class UpdateMeetingRequest extends AbstractBaseApiRequest
 {
     /**
@@ -39,7 +41,7 @@ class UpdateMeetingRequest extends AbstractBaseApiRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'code' => ['required','string', 'max:255'],
+            'code' => ['required', 'string', 'max:255'],
             'ord' => ['integer'],
         ];
     }

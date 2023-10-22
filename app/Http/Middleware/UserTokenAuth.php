@@ -9,11 +9,11 @@ use Closure;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserTokenAuth
 {
+
     /**
      * Проходит проверка аутентификации пользователя
      *

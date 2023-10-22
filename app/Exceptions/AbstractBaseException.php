@@ -6,6 +6,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Абстратный класс для обработки исключений
+ */
 abstract class AbstractBaseException extends \Exception
 {
     /**

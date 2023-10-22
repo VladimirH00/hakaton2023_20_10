@@ -5,6 +5,9 @@ namespace App\Http\Requests\User;
 use App\Http\Requests\AbstractBaseApiRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * request для валидации формы которая приходит с клиента для создания Пользователя
+ */
 class StoreUserRequest extends AbstractBaseApiRequest
 {
     /**

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class MeetingFile extends Model
 {
     use HasFactory;
+
     protected $table = 'meeting_files';
 
     /**

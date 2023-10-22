@@ -5,6 +5,9 @@ namespace App\Http\Requests\User;
 use App\Http\Requests\AbstractBaseApiRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * Request форма для проверки данных логина
+ */
 class LoginUserRequest extends AbstractBaseApiRequest
 {
     /**
