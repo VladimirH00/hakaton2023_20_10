@@ -93,9 +93,30 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $user)
     {
+        /** @var User $model */
+        $model = User::query()
+            ->where('email', $user)
+            ->first();
 
+        if (!$model) {
+            throw new NotFoundApiException('Данный специалист не найден', 404);
+        }
+
+        $profile = SprProfile::query()
+            ->where('code', $request->post('profileCode'))
+            ->first();
+
+        $model->firstname = $request->post('firstname');
+        $model->surname = $request->post('surname');
+        $model->patronymic = $request->post('patronymic');
+        $model->birthday = $request->post('birthday');
+        $model->profile_id = $profile->id;
+        $model->email = $request->post('email');
+        $model->save();
+
+        return response()->json('modified', 201);
     }
 
     /**

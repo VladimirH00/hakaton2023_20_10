@@ -32,6 +32,7 @@ class SpecialistController extends Controller
         $model->name = $request->get('name');
         $model->description = $request->get('description');
         $model->code = $request->get('code');
+        $model->type_id= 1;
         $model->save();
 
         return response()->json('inserted', 201);
@@ -68,9 +69,10 @@ class SpecialistController extends Controller
             throw new NotFoundApiException('Данный специалист не найден', 404);
         }
 
-        $model->name = $request->get('name');
-        $model->description = $request->get('description');
-        $model->code = $request->get('code');
+        $model->name = $request->post('name');
+        $model->description = $request->post('description');
+        $model->code = $request->post('code');
+        $model->type_id= 1;
         $model->save();
 
         return response()->json('modified', 201);
