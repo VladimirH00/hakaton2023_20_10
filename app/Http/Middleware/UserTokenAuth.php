@@ -25,8 +25,9 @@ class UserTokenAuth
     public function handle(Request $request, Closure $next): Response
     {
         $authorization = explode(' ', trim($request->header('Authorization')));
+        $token = '';
 
-        if (is_array($authorization) && count($authorization) > 0) {
+        if (is_array($authorization) && count($authorization) > 1) {
             $token = $authorization[1];
         }
 

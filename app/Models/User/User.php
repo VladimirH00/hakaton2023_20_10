@@ -64,5 +64,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function profile()
+    {
+        return $this->belongsTo(SprProfile::class, 'profile_id');
+    }
 
 }
