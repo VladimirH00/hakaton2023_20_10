@@ -17,13 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('user/login', [UserAuthController::class, 'login']);
 
-Route::apiResource('/months', SpecialistController::class)->except([
+Route::apiResource('specialist', SpecialistController::class)->except([
     'create',
     'update',
     'destroy',
@@ -35,9 +31,12 @@ Route::apiResource('meeting', MeetingController::class)->except([
     'create',
     'update',
     'destroy',
-]);
+])->missing(function () {
+    throw new HttpResponseException(response()->json('Not found', 404));
+});
 
 Route::middleware('user.auth')->group(function () {
+    Route::get('personal-info', [UserAuthController::class, 'getInfoForUser']);
     Route::apiResource('specialist', SpecialistController::class);
     Route::apiResource('user', UserController::class);
     Route::apiResource('meeting', MeetingController::class);

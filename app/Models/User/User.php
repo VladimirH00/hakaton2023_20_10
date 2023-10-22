@@ -22,6 +22,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
  * @property string $created_at
  * @property string $updated_at
  * @property string $google_secret_key
+ * @property string $image_path
  *
  * @property SprProfile $profile
  * @property UserAuth[] $tokens

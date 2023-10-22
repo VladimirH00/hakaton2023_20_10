@@ -9,19 +9,23 @@ use Closure;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserTokenAuth
 {
     /**
-     * Handle an incoming request.
+     * Проходит проверка аутентификации пользователя
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param Request $request
+     * @param \Closure(Request): (Response) $next
+     * @return Response
+     * @throws AuthorizationException
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $authorization = explode(' ', $request->header('Authorization'));
-        $token = '';
+        $authorization = explode(' ', trim($request->header('Authorization')));
+
         if (is_array($authorization) && count($authorization) > 0) {
             $token = $authorization[1];
         }

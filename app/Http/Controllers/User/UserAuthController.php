@@ -12,6 +12,14 @@ use Illuminate\Support\Str;
 
 class UserAuthController
 {
+    /**
+     * Осуществяется логин на сайт
+     * Если верный google код то создает токен записывает
+     * его в бд и отдает на клиент
+     *
+     * @param LoginUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(LoginUserRequest $request)
     {
         $email = $request->get('email');
@@ -33,9 +41,33 @@ class UserAuthController
         $token->expires_at = date("Y-m-d H:i:s", strtotime("+1 month"));
         $token->save();
 
+        header("Set-Cookie: token={$token->token}");
+
         return response()->json([
             'msg' => 'token',
             'token' => $token->token
         ]);
+    }
+
+    /**
+     * Возвращаем информацию о текущем залогиненом пользователе
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getInfoForUser()
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $beautyData = [
+            'fio' => "{$user->surname} {$user->firstname} {$user->patronymic}",
+            'surname' => $user->surname,
+            'firstname' => $user->firstname,
+            'patronymic' => $user->surname,
+            'email' => $user->email,
+            'avatar' => $user->image_path,
+        ];
+
+        return response()->json($beautyData);
     }
 }

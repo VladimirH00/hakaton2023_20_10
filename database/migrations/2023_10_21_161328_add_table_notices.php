@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('notices', function (Blueprint $table) {
+        Schema::create('notices', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
             $table->text('description')->nullable();
             $table->timestampsTz();
         });
 
-        Schema::table('notice_users', function (Blueprint $table) {
+        Schema::create('notice_users', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->foreign('user_id')
@@ -32,7 +32,7 @@ return new class extends Migration
                 ->on('notices')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->boolean('is_checked');
+            $table->boolean('is_checked')->nullable();
         });
 
     }

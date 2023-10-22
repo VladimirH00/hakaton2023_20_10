@@ -11,6 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('specialist_types', function (Blueprint $table){
+            $table->id();
+            $table->string('name', 255);
+            $table->string('icon_path', 255);
+            $table->string('color', 25);
+        });
+
         Schema::table('specialists', function (Blueprint $table) {
             $table->integer('type_id');
             $table->foreign('type_id')
@@ -18,13 +25,6 @@ return new class extends Migration
                 ->on('specialist_types')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-        });
-
-        Schema::table('specialist_types', function (Blueprint $table){
-            $table->id();
-            $table->string('name', 255);
-            $table->string('icon_path', 255);
-            $table->string('color', 25);
         });
     }
 
