@@ -36,24 +36,12 @@ Route::apiResource('meeting', MeetingController::class)->except([
 });
 
 Route::middleware('user.auth')->group(function () {
-    Route::get('personal-info', [UserAuthController::class, 'getInfoForUser'])->only([
-        'store',
-        'update',
-        'destroy',
-    ])->middleware('check.moderator');
+    Route::get('personal-info', [UserAuthController::class, 'getInfoForUser']);
 
-    Route::apiResource('specialist', SpecialistController::class)->only([
-        'store',
-        'update',
-        'destroy',
-    ])->middleware('check.moderator');
+    Route::apiResource('specialist', SpecialistController::class)->middleware('check.moderator');
 
     Route::apiResource('user', UserController::class)->middleware('check.moderator');
 
-    Route::apiResource('meeting', MeetingController::class)->only([
-        'store',
-        'update',
-        'destroy',
-    ])->middleware('check.moderator');
+    Route::apiResource('meeting', MeetingController::class)->middleware('check.moderator');
 });
 
